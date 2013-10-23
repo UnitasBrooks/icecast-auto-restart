@@ -9,9 +9,9 @@ soup = BeautifulSoup(urllib2.urlopen('http://stream.kpsu.org:8080/').read())
 
 while True:
 	try:
-		j = soup.findAll('table')[1]
+		j = soup.findAll('table')[1] # if the mount point is active this will be fine
 	except IndexError:
-		subprocess.call(['./test.sh'])
+		subprocess.call(['./test.sh']) # other wise the mount point has failed
 		print "stream failed, restarting"
 		time.sleep(900)
 	print "stream is fine"	
