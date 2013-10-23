@@ -10,7 +10,7 @@ soup = BeautifulSoup(urllib2.urlopen('http://stream.kpsu.org:8080/').read())
 j = soup.findAll('table')[2]
 print j
 while True:
-	if j != "[]": 
+	if j is not None: 
 		print "stream is fine"
 	else:
 		subprocess.call(['./test.sh'])
