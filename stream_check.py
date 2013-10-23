@@ -4,16 +4,15 @@ import subprocess
 from bs4 import BeautifulSoup
 # or if you're using BeautifulSoup4:
 # from bs4 import BeautifulSoup
-
+#'http://www.diliak.net:8000'
 soup = BeautifulSoup(urllib2.urlopen('http://stream.kpsu.org:8080/').read())
 
-j = soup.findAll('table')[2]
-print j
 while True:
-	if j is not None: 
-		print "stream is fine"
-	else:
+	try:
+		j = soup.findAll('table')[1]
+	except IndexError:
 		subprocess.call(['./test.sh'])
 		print "stream failed, restarting"
 		time.sleep(900)
+	print "stream is fine"	
 	time.sleep(2)
