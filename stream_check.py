@@ -8,11 +8,10 @@ from bs4 import BeautifulSoup
 #'
 
 while True:
-	try:
-		soup = BeautifulSoup(urllib2.urlopen('http://stream.kpsu.org:8080').read())
-		j = soup.findAll('table')[2] # if the mount point is active this will be fine
-	except IndexError:
-		print "stream failed, restarting" # otherwise the mount point has faileds
+	soup = BeautifulSoup(urllib2.urlopen('http://www.diliak.net:8000/').read())
+	j = soup.findAll('table')
+	if len(j) != 3:
+		print "stream failed, restarting" # otherwise the mount point has failed
 		subprocess.call(['./test.sh']) 
 		text_file = open("stream_failure_log.txt","w")
 		text_file.write("stream failed at: ")
