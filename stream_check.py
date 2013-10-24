@@ -13,9 +13,10 @@ while True:
 	if len(j) != 3:
 		print "stream failed, restarting" # otherwise the mount point has failed
 		subprocess.call(['./test.sh']) 
-		text_file = open("stream_failure_log.txt","w")
+		text_file = open("stream_failure_log.txt","a")
 		text_file.write("stream failed at: ")
 		text_file.write(str(datetime.now()))
+		text_file.write("\n")
 		text_file.close()
 		time.sleep(900)
 	print "stream is fine"
